@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="30-minute home boxing bag program with round timer, AVN-safe footwork, and 12-week progression.">
+<meta name="description" content="30-minute home boxing bag program with round timer, low-impact footwork, and 12-week progression.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#129354;</text></svg>">
 <title>The 30-Minute Bag Program</title>
 <style>
@@ -107,7 +107,7 @@
   }
   .focusline strong { color: var(--corner); }
 
-  /* ---- AVN rules ---- */
+  /* ---- low-impact rules ---- */
   .rules {
     background: var(--tape); border-left: 4px solid var(--corner);
     padding: 16px 18px; border-radius: 0 6px 6px 0; margin: 8px 0 0;
@@ -139,6 +139,17 @@
   }
   .cue b { color: var(--corner); }
 
+  /* ---- form videos ---- */
+  .formvid { margin-top: 12px; border-top: 1px dashed var(--line); padding-top: 12px; }
+  .formvid .label {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    font-weight: 800; color: var(--ink-soft); margin-bottom: 8px;
+  }
+  .formvid iframe {
+    width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line);
+    border-radius: 4px; display: block; background: var(--ring-2);
+  }
+
   /* ---- progression table ---- */
   .tablewrap { overflow-x: auto; }
   table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 560px; }
@@ -166,43 +177,43 @@
 
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Home Boxing Â· 2 to 3 sessions per week Â· 30 minutes</p>
+    <p class="eyebrow">Home Boxing &middot; 2 to 3 sessions per week &middot; 30 minutes</p>
     <h1>The 30-Minute Bag Program</h1>
-    <p class="lede">Built for a 5'8", 177 lb home-trained boxer working around AVN. Every session is the same skeleton: 5 minute warm-up, six 3-minute rounds with 1 minute rest, short cooldown. What changes over the weeks is what you do inside each round.</p>
+    <p class="lede">A complete program for the home-trained boxer, deliberately low-impact and joint-friendly. Every session is the same skeleton: 5 minute warm-up, six 3-minute rounds with 1 minute rest, short cooldown. What changes over the weeks is what you do inside each round.</p>
   </header>
 
   <section class="timer" aria-label="Round timer">
     <span class="timer-state idle" id="state">Ready</span>
     <div class="clock" id="clock">3:00</div>
-    <div class="roundlabel" id="roundlabel">Round 1 of 6 Â· 3:00 work / 1:00 rest</div>
+    <div class="roundlabel" id="roundlabel">Round 1 of 6 &middot; 3:00 work / 1:00 rest</div>
     <button class="primary" id="startbtn">Start</button>
     <button id="resetbtn">Reset</button>
     <div class="focusline" id="focusline"><strong>Round 1:</strong> Shadowbox and movement. No bag yet.</div>
   </section>
 
-  <h2>AVN Ground Rules</h2>
+  <h2>Ground Rules: Low-Impact by Design</h2>
   <div class="rules">
-    <p style="margin:0"><strong>Non-negotiable movement rules for this program.</strong> AVN in a weight-bearing joint means impact is the enemy, not movement. Boxing footwork adapts to this very well because old-school footwork is flat and grounded anyway.</p>
+    <p style="margin:0"><strong>Non-negotiable movement rules for this program.</strong> Everything here is built low-impact on purpose: joints last longer when pounding stays out of training, and old-school boxing footwork was flat and grounded anyway. You lose nothing by training this way.</p>
     <ul>
       <li><strong>No bouncing, no hopping, no jump rope.</strong> Feet glide, they never leave the floor. Imagine a sheet of paper under each foot.</li>
       <li><strong>Step-drag is your only travel method.</strong> Lead foot steps a few inches, rear foot drags to restore stance. Small steps, weight stays low and centered.</li>
       <li><strong>Pivot on the ball of the foot with weight unloaded.</strong> When you pivot for the rear hand, let the heel lift and rotate light. Never grind a loaded joint.</li>
       <li><strong>Pain is data, not weakness.</strong> Sharp or deep joint pain during or after a session means stop, shorten the round, or swap footwork rounds for pure hand-technique rounds that day.</li>
-      <li><strong>Clear this with your orthopedist.</strong> Tell them: flat-footed shuffles, small steps, rotational punching. They may want to limit the pivot side depending on which joint is affected.</li>
+      <li><strong>Training around an injury or joint condition?</strong> Clear it with your doctor first. Tell them exactly what this involves: flat-footed shuffles, small steps, rotational punching.</li>
     </ul>
   </div>
 
-  <h2>Warm-Up Â· 5 Minutes, Before the Timer</h2>
+  <h2>Warm-Up &middot; 5 Minutes, Before the Timer</h2>
   <div class="round"><div class="round-body">
     <ul>
       <li><strong>1 min:</strong> arm circles, shoulder rolls, wrist circles, neck rolls.</li>
-      <li><strong>1 min:</strong> hip circles and gentle leg swings within a comfortable range. Never force the AVN joint.</li>
+      <li><strong>1 min:</strong> hip circles and gentle leg swings within a comfortable range. Never force the range.</li>
       <li><strong>2 min:</strong> slow shadowboxing at 50% speed. Just stance, guard, and lazy jabs. Grease the pattern, not the muscles.</li>
       <li><strong>1 min:</strong> 10 slow bodyweight squats to comfortable depth plus torso rotations. Punching power comes from rotation, so wake it up.</li>
     </ul>
   </div></div>
 
-  <h2>The Six Rounds Â· 3:00 Work / 1:00 Rest</h2>
+  <h2>The Six Rounds &middot; 3:00 Work / 1:00 Rest</h2>
 
   <div class="round">
     <div class="round-head"><span class="round-num">Round 1</span><span class="round-name">Shadowbox + Movement (no bag)</span></div>
@@ -213,6 +224,10 @@
         <li>Every 30 seconds: one slow slip left, one slow slip right (bend at knees and waist slightly, eyes stay on target).</li>
       </ul>
       <div class="cue"><b>Cue:</b> if your feet ever cross or click together, freeze, reset stance, continue. That habit matters more than anything you do on the bag.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; Step-drag (ExpertBoxing)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/dHUutXudf8o" title="Boxing Footwork Technique: Step-drag" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
@@ -225,6 +240,10 @@
         <li>Snap it back faster than it went out. The bag should pop, not push.</li>
       </ul>
       <div class="cue"><b>Cue:</b> exhale sharply ("tss") on every punch. Rotate the fist at the end. Return to your chin, not your chest.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; Jab on the heavy bag (Final Round Training)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/kN6C9QSLNPc" title="How To Throw a Jab on the Heavy Bag" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
@@ -237,7 +256,11 @@
         <li>Second minute: 1-2 then step-drag out at an angle, not straight back.</li>
         <li>Third minute: 1-1-2 and 1-2-1 mixes at 80%.</li>
       </ul>
-      <div class="cue"><b>Cue:</b> keep the pivot light on the ball of the foot. If your AVN side is the rear leg and pivoting aggravates it, shorten the pivot and get rotation from the torso instead.</div>
+      <div class="cue"><b>Cue:</b> keep the pivot light on the ball of the foot. If pivoting bothers your rear hip or knee, shorten the pivot and get rotation from the torso instead.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; The 1-2 (Tony Jeffries, Olympic medalist)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/vyTaKpylOcU" title="How to Throw a 1-2 / Jab-Cross in Boxing" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
@@ -251,6 +274,10 @@
         <li>Mix in the catch: glove blocks an imaginary jab at your forehead, then counter.</li>
       </ul>
       <div class="cue"><b>Cue:</b> a slip only needs to move your head the width of your head. Big dramatic slips are slower and load the hips more.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; How to slip punches (FightCamp)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/-cfSa-gBxtc" title="How To Slip Punches: Beginner Boxing Defense" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
@@ -264,6 +291,10 @@
         <li>Add body shots: 1-2 to the head, 3 to the body (bend the knees, keep posture upright).</li>
       </ul>
       <div class="cue"><b>Cue:</b> the hook comes from turning the lead hip and foot together, elbow up, arm at 90 degrees. Do not swing wide.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; Lead hook on the heavy bag (Final Round Training)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/_0TFCUP8LB0" title="How to Throw a Lead Hook on the Heavy Bag" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
@@ -286,7 +317,7 @@
     </div>
   </div>
 
-  <h2>Cooldown Â· 2 to 3 Minutes</h2>
+  <h2>Cooldown &middot; 2 to 3 Minutes</h2>
   <div class="round"><div class="round-body">
     <ul>
       <li>1 min very slow shadowboxing, dropping intensity to a walk.</li>
@@ -336,27 +367,27 @@
   <p>These are chosen specifically because the instruction quality massively outclasses the view counts.</p>
 
   <a class="vid" href="https://www.youtube.com/c/worldclassboxingchannel" target="_blank" rel="noopener">
-    <span class="t">World Class Boxing Channel Â· Tom Yankello</span>
+    <span class="t">World Class Boxing Channel &middot; Tom Yankello</span>
     <div class="d">The main resource for this program. 4-time Hall of Fame coach who has trained world champions, with hundreds of free instructionals that get a fraction of the views they deserve. Old-school fundamentals, exactly what a home-trained boxer needs.</div>
   </a>
   <a class="vid" href="https://www.youtube.com/watch?v=E2ks5WSFOIk" target="_blank" rel="noopener">
-    <span class="t">"What You Need To Do When Hitting The Heavybag" Â· Tom Yankello</span>
+    <span class="t">"What You Need To Do When Hitting The Heavybag" &middot; Tom Yankello</span>
     <div class="d">Watch this before your first session. Right vs wrong bag habits, from a coach who has fixed thousands of them.</div>
   </a>
   <a class="vid" href="https://www.youtube.com/results?search_query=alexei+frolov+school+of+boxing" target="_blank" rel="noopener">
-    <span class="t">School of Boxing Â· Alexei Frolov</span>
-    <div class="d">Russian-school technician. Fly-on-the-wall training sessions with elite-level detail on balance and movement mechanics. His grounded, flat-footed movement style happens to be ideal for your AVN constraints.</div>
+    <span class="t">School of Boxing &middot; Alexei Frolov</span>
+    <div class="d">Russian-school technician. Fly-on-the-wall training sessions with elite-level detail on balance and movement mechanics. His grounded, flat-footed movement style matches this program's low-impact rules perfectly.</div>
   </a>
   <a class="vid" href="https://www.myboxingcoach.com/5-top-boxing-training-channels/" target="_blank" rel="noopener">
-    <span class="t">MyBoxingCoach Â· Fran Sands</span>
+    <span class="t">MyBoxingCoach &middot; Fran Sands</span>
     <div class="d">UK coach with a full structured curriculum from stance to advanced combinations. Especially strong on how techniques chain together, which is your weeks 5 to 12 material.</div>
   </a>
   <a class="vid" href="https://www.youtube.com/results?search_query=lee+wylie+boxing+analysis" target="_blank" rel="noopener">
-    <span class="t">Lee Wylie Â· Fight Analysis</span>
+    <span class="t">Lee Wylie &middot; Fight Analysis</span>
     <div class="d">Not instruction, education. Breakdowns of Whitaker, Jones Jr., and Tyson that teach you to see defense and angles. Watch one per week on rest days.</div>
   </a>
 
-  <p class="footnote">This program is training guidance, not medical advice. AVN management belongs to your orthopedist: confirm with them that flat-footed boxing footwork and rotational punching are safe for your specific joint and stage, and let their answer override anything written here.</p>
+  <p class="footnote">This program is training guidance, not medical advice. If you train around an injury or a joint condition, confirm with your doctor that flat-footed boxing footwork and rotational punching are safe for you, and let their answer override anything written here.</p>
 </div>
 
 <script>
@@ -412,7 +443,7 @@
     }
     roundlabel.textContent = status === "done"
       ? "Session complete. Cooldown time."
-      : "Round " + round + " of " + ROUNDS + " Â· 3:00 work / 1:00 rest";
+      : "Round " + round + " of " + ROUNDS + " · 3:00 work / 1:00 rest";
     var f = focuses[Math.min(round, ROUNDS) - 1];
     focusline.innerHTML = status === "done"
       ? "<strong>Nice work.</strong> Slow shadowbox, then stretch."
