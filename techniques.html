@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Illustrated boxing technique guide: all punches 1-6, defense, movement, and advanced techniques with annotated form figures.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#129354;</text></svg>">
+<title>Technique Guide &middot; The Bag Program</title>
+<style>
+  :root {
+    --ring: #f4f2ec; --ring-2: #e9e6dc; --ink: #1d2430; --ink-soft: #4c5563;
+    --line: #cfc9ba; --corner: #b5432e; --corner-soft: #f3ddd7;
+    --rest: #2c6e63; --rest-soft: #dcebe6; --card: #ffffff; --tape: #f5efdc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ring: #171c26; --ring-2: #10141c; --ink: #ece7db; --ink-soft: #a6a89e;
+      --line: #333c4c; --corner: #e06a4f; --corner-soft: #3a2620;
+      --rest: #5cb8a4; --rest-soft: #1c332e; --card: #202736; --tape: #262c39;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ring); color: var(--ink);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55; margin: 0; padding: 0 16px 80px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header.hero { padding: 36px 0 18px; border-bottom: 3px solid var(--ink); }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--corner); font-weight: 700; margin: 0 0 10px;
+  }
+  .eyebrow a { color: var(--corner); text-decoration: none; }
+  .eyebrow a:hover { text-decoration: underline; }
+  h1 {
+    font-size: clamp(30px, 6vw, 48px); line-height: 1.02; margin: 0 0 10px;
+    font-weight: 800; letter-spacing: -.015em; text-transform: uppercase; text-wrap: balance;
+  }
+  .lede { color: var(--ink-soft); font-size: 16px; max-width: 62ch; margin: 0; }
+
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 6px; position: sticky; top: 0; background: var(--ring); padding: 10px 0; z-index: 5; }
+  .tabs button {
+    font: inherit; font-weight: 800; text-transform: uppercase; letter-spacing: .08em;
+    font-size: 13px; padding: 9px 16px; border-radius: 4px; cursor: pointer;
+    border: 2px solid var(--ink); background: var(--card); color: var(--ink);
+  }
+  .tabs button.on { background: var(--ink); color: var(--ring); }
+  .tabs button:focus-visible { outline: 3px solid var(--corner); outline-offset: 2px; }
+
+  section.pane[hidden] { display: none; }
+  .paneintro { color: var(--ink-soft); font-size: 15px; max-width: 66ch; margin: 14px 0 4px; }
+
+  .tech {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    margin: 16px 0; overflow: hidden;
+  }
+  .tech-head {
+    display: flex; align-items: baseline; gap: 12px; padding: 12px 16px;
+    border-bottom: 1px solid var(--line); background: var(--ring-2);
+  }
+  .tech-num {
+    font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--corner); white-space: nowrap;
+  }
+  .tech-name { font-weight: 700; font-size: 17px; }
+  .tech-body { display: flex; flex-wrap: wrap; gap: 18px; padding: 16px; }
+  .fig { flex: 1 1 300px; max-width: 380px; }
+  .fig svg { width: 100%; height: auto; display: block; background: var(--tape); border-radius: 6px; }
+  .pts { flex: 1 1 260px; min-width: 240px; }
+  .pts ul { margin: 0 0 10px; padding-left: 18px; }
+  .pts li { margin: 6px 0; font-size: 15px; }
+  .mist {
+    font-size: 13.5px; background: var(--corner-soft); color: var(--ink);
+    border-left: 3px solid var(--corner); padding: 8px 12px; border-radius: 0 4px 4px 0; margin: 10px 0;
+  }
+  .mist b { color: var(--corner); }
+  .watch { font-size: 13px; font-weight: 700; }
+  .watch a { color: var(--corner); }
+
+  /* figure drawing classes */
+  .limb { stroke: var(--ink); stroke-width: 11; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+  .thin { stroke: var(--ink); stroke-width: 7; stroke-linecap: round; fill: none; }
+  .head { fill: var(--ink); }
+  .glove { fill: var(--corner); }
+  .cl { stroke: var(--ink-soft); stroke-width: 1.2; fill: none; }
+  .ct { font-size: 12px; font-weight: 700; fill: var(--ink); }
+  .motion { stroke: var(--rest); stroke-width: 3.5; fill: none; stroke-dasharray: 6 5; }
+  .incoming { stroke: var(--corner); stroke-width: 6; stroke-linecap: round; fill: none; opacity: .8; }
+  .guide { stroke: var(--line); stroke-width: 2; stroke-dasharray: 5 4; fill: none; }
+  .lbl { font-size: 11px; fill: var(--ink-soft); }
+  .foot-el { fill: var(--corner); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="mo" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="var(--rest)"/></marker>
+    <marker id="mi" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="var(--corner)"/></marker>
+    <marker id="mk" markerWidth="9" markerHeight="9" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="var(--ink)"/></marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow"><a href="index.html">&larr; Back to the program and timer</a></p>
+    <h1>Technique Guide</h1>
+    <p class="lede">Every technique in the program, drawn with the form points marked exactly where they happen on the body. Target is always to the RIGHT of the figure. Orthodox stance (left foot forward); mirror everything if you're southpaw.</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button id="tab-punches" class="on" data-pane="punches">Punches 1-6</button>
+    <button id="tab-defense" data-pane="defense">Defense</button>
+    <button id="tab-movement" data-pane="movement">Movement</button>
+    <button id="tab-advanced" data-pane="advanced">High Level</button>
+  </div>
+
+  <!-- ============ PUNCHES ============ -->
+  <section class="pane" id="pane-punches">
+    <p class="paneintro">The number system the voice coach uses. Every punch shares one engine: ground, hip, shoulder, fist, in that order. The arm is the delivery, never the source.</p>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">1</span><span class="tech-name">The Jab</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Jab form figure">
+          <circle class="head" cx="158" cy="92" r="19"/>
+          <path class="limb" d="M154,122 L152,208"/>
+          <path class="limb" d="M152,208 L184,262 L198,318"/>
+          <path class="limb" d="M152,208 L120,262 L102,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M86,326 L118,322"/>
+          <path class="limb" d="M154,124 L208,116 L248,110"/>
+          <circle class="glove" cx="262" cy="108" r="13"/>
+          <path class="limb" d="M152,128 L130,162 L138,124"/>
+          <circle class="glove" cx="140" cy="112" r="12"/>
+          <path class="cl" d="M256,60 L261,92"/><text class="ct" x="150" y="52">Full extension, palm down</text>
+          <path class="cl" d="M96,66 L142,84"/><text class="ct" x="12" y="60">Chin tucked</text>
+          <path class="cl" d="M84,136 L126,116"/><text class="ct" x="10" y="150">Rear glove</text><text class="ct" x="10" y="164">at the chin</text>
+          <path class="cl" d="M240,170 L236,124"/><text class="ct" x="170" y="186">Snap back faster</text><text class="ct" x="170" y="200">than it goes out</text>
+          <path class="cl" d="M70,296 L98,312"/><text class="ct" x="12" y="288">Rear heel light</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Push straight from the shoulder; the fist rotates palm-down in the last 6 inches.</li>
+            <li>Land with the index and middle knuckles, wrist locked straight.</li>
+            <li>Exhale sharply on impact. The return is part of the punch.</li>
+            <li>Optional small step-in with the lead foot makes it a power jab.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> dropping the hand on the way back. It returns to your cheekbone on the same line it went out.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=kN6C9QSLNPc" target="_blank" rel="noopener">Jab on the heavy bag (Final Round Training)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">2</span><span class="tech-name">The Cross</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Cross form figure">
+          <circle class="head" cx="158" cy="92" r="19"/>
+          <path class="limb" d="M154,122 L152,208"/>
+          <path class="limb" d="M152,208 L184,262 L198,318"/>
+          <path class="limb" d="M152,208 L124,258 L112,312"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M98,324 L124,308"/>
+          <path class="motion" d="M92,336 Q114,348 136,334" marker-end="url(#mo)"/>
+          <path class="limb" d="M150,124 L206,116 L248,110"/>
+          <circle class="glove" cx="262" cy="108" r="13"/>
+          <path class="limb" d="M154,128 L176,160 L150,126"/>
+          <circle class="glove" cx="144" cy="114" r="12"/>
+          <path class="motion" d="M116,196 A40,22 0 0 1 190,200" marker-end="url(#mo)"/>
+          <path class="cl" d="M256,60 L261,92"/><text class="ct" x="120" y="52">First two knuckles land</text>
+          <path class="cl" d="M96,66 L142,84"/><text class="ct" x="8" y="60">Chin behind</text><text class="ct" x="8" y="74">the shoulder</text>
+          <path class="cl" d="M236,208 L196,202"/><text class="ct" x="222" y="224">Hips + shoulders</text><text class="ct" x="222" y="238">rotate together</text>
+          <path class="cl" d="M66,290 L104,310"/><text class="ct" x="8" y="282">Pivot rear foot,</text><text class="ct" x="8" y="296">heel up</text>
+          <path class="cl" d="M250,300 L204,322"/><text class="ct" x="228" y="292">Lead foot flat</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>The rear foot pivot starts everything: heel lifts, knee turns in, hip fires through.</li>
+            <li>Pull the lead shoulder back as the rear shoulder drives forward; that torque is the power.</li>
+            <li>Weight stays centered. If you fall forward onto the punch, you pushed it.</li>
+            <li>Chin stays glued behind your punching shoulder for protection.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> punching with the arm and leaving the rear heel flat. No pivot means no power, roughly 75% of a cross comes from legs and trunk.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=vyTaKpylOcU" target="_blank" rel="noopener">The 1-2 (Tony Jeffries)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">3</span><span class="tech-name">The Lead Hook</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Lead hook form figure">
+          <circle class="head" cx="156" cy="92" r="19"/>
+          <path class="limb" d="M152,122 L152,208"/>
+          <path class="limb" d="M152,208 L184,262 L196,318"/>
+          <path class="limb" d="M152,208 L120,262 L102,318"/>
+          <path class="thin" d="M182,326 L218,318"/>
+          <path class="thin" d="M86,326 L118,324"/>
+          <path class="motion" d="M184,336 Q206,346 228,332" marker-end="url(#mo)"/>
+          <path class="limb" d="M154,124 L214,132 L190,100"/>
+          <circle class="glove" cx="184" cy="94" r="13"/>
+          <path class="limb" d="M150,128 L128,162 L136,124"/>
+          <circle class="glove" cx="138" cy="112" r="12"/>
+          <path class="motion" d="M262,148 A84,64 0 0 0 200,94" marker-end="url(#mo)"/>
+          <path class="cl" d="M244,66 L192,88"/><text class="ct" x="216" y="58">Fist tight, thumb up</text><text class="ct" x="216" y="72">or palm down</text>
+          <path class="cl" d="M250,180 L232,142"/><text class="ct" x="212" y="198">Elbow up,</text><text class="ct" x="212" y="212">arm at 90&deg;</text>
+          <path class="cl" d="M84,140 L126,116"/><text class="ct" x="10" y="152">Rear hand</text><text class="ct" x="10" y="166">stays home</text>
+          <path class="cl" d="M250,300 L216,322"/><text class="ct" x="200" y="292">Lead foot + hip</text><text class="ct" x="200" y="306">turn together</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Lift the elbow to shoulder height and lock the arm at 90 degrees; it stays frozen while the body turns.</li>
+            <li>The lead foot pivots inward (toes turn toward your rear foot) as the hip whips around.</li>
+            <li>Short arc. The punch travels maybe 12 inches; the rotation does the damage.</li>
+            <li>Best thrown after the 2 has turned your body the other way, like winding a spring.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> swinging wide with a loose arm. If your elbow trails behind your fist, it's an arm slap, not a hook.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=_0TFCUP8LB0" target="_blank" rel="noopener">Lead hook on the heavy bag (Final Round Training)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">4</span><span class="tech-name">The Rear Hook</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Rear hook form figure">
+          <circle class="head" cx="156" cy="92" r="19"/>
+          <path class="limb" d="M152,122 L152,208"/>
+          <path class="limb" d="M152,208 L184,262 L198,318"/>
+          <path class="limb" d="M152,208 L124,258 L112,312"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M98,324 L124,308"/>
+          <path class="motion" d="M92,336 Q114,348 136,334" marker-end="url(#mo)"/>
+          <path class="limb" d="M150,126 L208,140 L186,106"/>
+          <circle class="glove" cx="180" cy="100" r="13"/>
+          <path class="limb" d="M154,126 L182,158 L150,124"/>
+          <circle class="glove" cx="142" cy="112" r="12"/>
+          <path class="motion" d="M258,154 A80,62 0 0 0 196,100" marker-end="url(#mo)"/>
+          <path class="cl" d="M244,70 L190,94"/><text class="ct" x="196" y="62">Tight 90&deg;, elbow up</text>
+          <path class="cl" d="M84,140 L128,116"/><text class="ct" x="10" y="152">Lead hand</text><text class="ct" x="10" y="166">guards the chin</text>
+          <path class="cl" d="M66,290 L104,310"/><text class="ct" x="8" y="282">Rear foot pivots</text><text class="ct" x="8" y="296">like the cross</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Same engine as the cross: rear foot pivots, rear hip drives; the arm is just bent instead of straight.</li>
+            <li>A short-range punch. If you're at jab distance, throw the 2 instead.</li>
+            <li>Lands beautifully after a 3 has turned their guard, or to the body under their elbow.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> winding it up behind your head. Any punch you load backwards is visible a week in advance.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=E2ks5WSFOIk" target="_blank" rel="noopener">Heavy bag fundamentals (Tom Yankello)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">5</span><span class="tech-name">The Rear Uppercut</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Rear uppercut form figure">
+          <circle class="head" cx="152" cy="98" r="19"/>
+          <path class="limb" d="M150,128 L152,214"/>
+          <path class="limb" d="M152,214 L186,266 L198,318"/>
+          <path class="limb" d="M152,214 L118,266 L104,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M90,326 L120,320"/>
+          <path class="limb" d="M150,130 L172,182 L184,138"/>
+          <circle class="glove" cx="186" cy="126" r="13"/>
+          <path class="limb" d="M152,132 L128,164 L134,126"/>
+          <circle class="glove" cx="136" cy="114" r="12"/>
+          <path class="motion" d="M206,182 L206,118" marker-end="url(#mo)"/>
+          <path class="cl" d="M246,90 L198,120"/><text class="ct" x="216" y="82">Palm faces you</text>
+          <path class="cl" d="M252,208 L212,164"/><text class="ct" x="222" y="226">Drive straight up</text><text class="ct" x="222" y="240">from the legs</text>
+          <path class="cl" d="M84,142 L124,118"/><text class="ct" x="10" y="154">Lead hand</text><text class="ct" x="10" y="168">stays high</text>
+          <path class="cl" d="M76,246 L112,258"/><text class="ct" x="10" y="238">Dip the knees</text><text class="ct" x="10" y="252">first</text>
+          <path class="cl" d="M240,290 L226,158"/><text class="ct" x="218" y="304">Elbow stays in front</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Dip the knees slightly and drop the rear hand a few inches, then drive up through the rear hip.</li>
+            <li>The fist travels a short vertical line to where the chin would be. Not a bowling swing from the floor.</li>
+            <li>Elbow stays in front of your ribs the whole way; palm rotates to face you at impact.</li>
+            <li>Combos: 1-2-5, 2-5-2, and 5 to the body when you're inside.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> pulling the hand down to your waist first. The dip comes from the knees, never from dropping your guard.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=KcagWYVfvBg" target="_blank" rel="noopener">Both uppercuts in slow motion (FightCamp)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">6</span><span class="tech-name">The Lead Uppercut</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Lead uppercut form figure">
+          <circle class="head" cx="154" cy="98" r="19"/>
+          <path class="limb" d="M152,128 L152,214"/>
+          <path class="limb" d="M152,214 L186,266 L198,318"/>
+          <path class="limb" d="M152,214 L118,266 L104,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M90,326 L120,322"/>
+          <path class="limb" d="M154,130 L184,180 L194,140"/>
+          <circle class="glove" cx="196" cy="128" r="13"/>
+          <path class="limb" d="M150,132 L124,162 L132,124"/>
+          <circle class="glove" cx="134" cy="112" r="12"/>
+          <path class="motion" d="M216,180 L216,120" marker-end="url(#mo)"/>
+          <path class="cl" d="M252,92 L208,122"/><text class="ct" x="226" y="84">Short + sneaky</text>
+          <path class="cl" d="M84,142 L122,116"/><text class="ct" x="10" y="154">Rear hand</text><text class="ct" x="10" y="168">stays high</text>
+          <path class="cl" d="M78,248 L112,260"/><text class="ct" x="10" y="240">Small dip,</text><text class="ct" x="10" y="254">no telegraph</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Smaller and faster than the 5. A little knee dip, lead hip drives up, fist pops up the middle.</li>
+            <li>Deadly at close range, especially right after slipping to your lead side.</li>
+            <li>Classic chains: 6-3 (uppercut lifts the chin, hook meets it) and 1-6-3.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> leaning back to make room. Stay over your feet; if you need room, step, don't lean.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=KcagWYVfvBg" target="_blank" rel="noopener">Both uppercuts in slow motion (FightCamp)</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEFENSE ============ -->
+  <section class="pane" id="pane-defense" hidden>
+    <p class="paneintro">Defense wins fights and self-defense situations alike. Rule for all of these: every defensive move ends loaded to counter, or it was wasted. Red line = the incoming punch.</p>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">D1</span><span class="tech-name">The Guard (home base)</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Guard form figure">
+          <circle class="head" cx="156" cy="94" r="19"/>
+          <path class="limb" d="M154,124 L152,208"/>
+          <path class="limb" d="M152,208 L184,262 L198,318"/>
+          <path class="limb" d="M152,208 L120,262 L102,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M86,326 L118,322"/>
+          <path class="limb" d="M156,126 L190,166 L180,120"/>
+          <circle class="glove" cx="178" cy="108" r="13"/>
+          <path class="limb" d="M152,126 L120,164 L134,120"/>
+          <circle class="glove" cx="134" cy="106" r="13"/>
+          <path class="cl" d="M246,74 L192,100"/><text class="ct" x="212" y="66">Gloves at</text><text class="ct" x="212" y="80">cheekbones</text>
+          <path class="cl" d="M250,180 L196,162"/><text class="ct" x="222" y="196">Elbows tucked</text><text class="ct" x="222" y="210">over the ribs</text>
+          <path class="cl" d="M92,64 L140,84"/><text class="ct" x="10" y="58">Chin down,</text><text class="ct" x="10" y="72">eyes up</text>
+          <path class="cl" d="M76,246 L114,260"/><text class="ct" x="10" y="238">Knees soft,</text><text class="ct" x="10" y="252">never locked</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Everything launches from here and returns here. Punches are round trips.</li>
+            <li>Forearms cover the body's centerline; you see the target through your eyebrows.</li>
+            <li>Shoulders stay relaxed. A tense guard is slow and burns your gas tank.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> guard drifting down as you get tired. When your gloves touch your cheekbones, you feel it and fix it instantly.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">D2</span><span class="tech-name">The Catch (block the jab)</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Catch form figure">
+          <circle class="head" cx="152" cy="94" r="19"/>
+          <path class="limb" d="M150,124 L150,208"/>
+          <path class="limb" d="M150,208 L182,262 L196,318"/>
+          <path class="limb" d="M150,208 L118,262 L100,318"/>
+          <path class="thin" d="M182,326 L220,326"/>
+          <path class="thin" d="M84,326 L116,322"/>
+          <path class="limb" d="M154,126 L186,150 L192,118"/>
+          <circle class="glove" cx="196" cy="106" r="14"/>
+          <path class="limb" d="M148,126 L118,162 L130,120"/>
+          <circle class="glove" cx="132" cy="108" r="12"/>
+          <path class="incoming" d="M330,104 L222,105" marker-end="url(#mi)"/>
+          <path class="cl" d="M250,60 L202,94"/><text class="ct" x="196" y="52">Catch it in the palm</text>
+          <path class="cl" d="M262,150 L262,112"/><text class="ct" x="212" y="168">Their jab</text>
+          <path class="cl" d="M88,64 L138,86"/><text class="ct" x="10" y="58">Don't lean back,</text><text class="ct" x="10" y="72">stay planted</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Rear glove opens slightly and meets their jab a few inches in front of your face, like catching a ball.</li>
+            <li>Don't reach for it. Let it arrive; reaching opens your chin for the cross behind it.</li>
+            <li>Instant counter: catch and jab back at the same time. Their arm is out; their face is open.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> slapping at the punch. The glove barely moves; the catch is firm, not a swat.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=ReD58z0jFJM" target="_blank" rel="noopener">How to defend any punch (Tony Jeffries)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">D3</span><span class="tech-name">The Parry</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Parry form figure">
+          <circle class="head" cx="152" cy="94" r="19"/>
+          <path class="limb" d="M150,124 L150,208"/>
+          <path class="limb" d="M150,208 L182,262 L196,318"/>
+          <path class="limb" d="M150,208 L118,262 L100,318"/>
+          <path class="thin" d="M182,326 L220,326"/>
+          <path class="thin" d="M84,326 L116,322"/>
+          <path class="limb" d="M154,126 L188,144 L198,114"/>
+          <circle class="glove" cx="204" cy="102" r="13"/>
+          <path class="limb" d="M148,126 L118,162 L130,120"/>
+          <circle class="glove" cx="132" cy="108" r="12"/>
+          <path class="incoming" d="M330,96 L226,99"/>
+          <path class="motion" d="M222,102 L196,142" marker-end="url(#mo)"/>
+          <path class="cl" d="M258,56 L210,94"/><text class="ct" x="188" y="48">Small tap across</text>
+          <path class="cl" d="M256,170 L212,134"/><text class="ct" x="226" y="188">Their punch</text><text class="ct" x="226" y="202">goes off-line</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>As their jab arrives, your rear hand taps it sideways-down, 2 or 3 inches, no more.</li>
+            <li>Your hand deflects; their momentum does the rest. They're now turned and open.</li>
+            <li>Best counter: parry and throw your own jab or cross straight down the middle.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> big swatting motion that pulls your own hand off your face. If your glove leaves your head to parry, you traded defense for defense.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">D4</span><span class="tech-name">The Slip</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Slip form figure">
+          <path class="guide" d="M152,36 L152,200"/>
+          <circle class="head" cx="118" cy="102" r="19"/>
+          <path class="limb" d="M150,208 L132,130"/>
+          <path class="limb" d="M150,208 L184,262 L198,318"/>
+          <path class="limb" d="M150,208 L118,262 L100,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M84,326 L116,322"/>
+          <path class="limb" d="M134,132 L164,158 L156,124"/>
+          <circle class="glove" cx="152" cy="112" r="12"/>
+          <path class="limb" d="M130,134 L100,166 L106,126"/>
+          <circle class="glove" cx="106" cy="114" r="12"/>
+          <path class="incoming" d="M330,90 L184,90" marker-end="url(#mi)"/>
+          <path class="motion" d="M152,92 L132,100" marker-end="url(#mo)"/>
+          <path class="cl" d="M84,60 L106,86"/><text class="ct" x="10" y="52">One head-width</text><text class="ct" x="10" y="66">off the line</text>
+          <path class="cl" d="M244,142 L240,94"/><text class="ct" x="196" y="158">Punch grazes past</text>
+          <path class="cl" d="M78,244 L112,258"/><text class="ct" x="10" y="236">Knees + waist</text><text class="ct" x="10" y="250">bend slightly</text>
+          <path class="cl" d="M244,250 L152,150"/><text class="ct" x="200" y="266">Centerline</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Head moves one head-width off the centerline. That's it. The punch misses by an inch and you're still in range to counter.</li>
+            <li>Small bend at the knees and waist together; the spine stays fairly tall.</li>
+            <li>Slip OUTSIDE their jab (to your lead side) when possible; it puts you on their blind side.</li>
+            <li>Every slip loads a counter: slip right loads your 2, slip left loads your 3 and 6.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> big lunging slips with the eyes dropping to the floor. If you can't counter from where your slip ends, it was too big.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=-cfSa-gBxtc" target="_blank" rel="noopener">How to slip punches (FightCamp)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">D5</span><span class="tech-name">The Pull / Step Back</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Pull step back form figure">
+          <circle class="head" cx="128" cy="98" r="19"/>
+          <path class="limb" d="M150,208 L134,128"/>
+          <path class="limb" d="M150,208 L188,266 L204,320"/>
+          <path class="limb" d="M150,208 L112,258 L96,316"/>
+          <path class="thin" d="M190,326 L226,326"/>
+          <path class="thin" d="M80,324 L112,320"/>
+          <path class="limb" d="M136,130 L168,156 L160,122"/>
+          <circle class="glove" cx="156" cy="110" r="12"/>
+          <path class="limb" d="M132,132 L102,164 L110,124"/>
+          <circle class="glove" cx="110" cy="112" r="12"/>
+          <path class="incoming" d="M330,94 L206,96" marker-end="url(#mi)"/>
+          <path class="motion" d="M160,232 L118,232" marker-end="url(#mo)"/>
+          <path class="cl" d="M250,60 L214,90"/><text class="ct" x="196" y="52">Falls one inch short</text>
+          <path class="cl" d="M84,60 L116,88"/><text class="ct" x="10" y="52">Chin pulls</text><text class="ct" x="10" y="66">out of reach</text>
+          <path class="cl" d="M76,262 L104,246"/><text class="ct" x="8" y="278">Weight shifts to</text><text class="ct" x="8" y="292">the rear leg</text>
+          <path class="cl" d="M244,262 L162,236"/><text class="ct" x="216" y="278">Or full step-drag</text><text class="ct" x="216" y="292">backward</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Two versions: the pull (weight shifts back, feet stay) and the step back (full step-drag out of range).</li>
+            <li>The pull makes them miss by an inch, keeping you close enough to counter instantly as they fall short.</li>
+            <li>The moment their punch dies, snap forward behind your own 2. The pull-counter-2 is a classic knockout.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> leaning straight back with the feet square and staying there. Off-balance and blind. Pull, then immediately return fire or angle out.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">D6</span><span class="tech-name">The Roll (under the hook)</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Roll under form figure">
+          <path class="incoming" d="M64,92 L268,92" marker-end="url(#mi)"/>
+          <path class="motion" d="M108,112 Q152,222 202,114" marker-end="url(#mo)"/>
+          <circle class="head" cx="152" cy="172" r="18"/>
+          <path class="limb" d="M154,232 L152,192"/>
+          <path class="limb" d="M154,232 L188,272 L198,318"/>
+          <path class="limb" d="M154,232 L118,272 L104,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M88,326 L120,322"/>
+          <path class="limb" d="M156,196 L182,214 L176,186"/>
+          <circle class="glove" cx="174" cy="176" r="12"/>
+          <path class="limb" d="M150,198 L124,216 L128,188"/>
+          <circle class="glove" cx="128" cy="178" r="12"/>
+          <path class="cl" d="M254,60 L232,86"/><text class="ct" x="216" y="52">Their hook</text>
+          <path class="cl" d="M256,160 L212,130"/><text class="ct" x="226" y="176">Head traces a U</text>
+          <path class="cl" d="M72,238 L110,262"/><text class="ct" x="8" y="230">Knees drop you,</text><text class="ct" x="8" y="244">not the back</text>
+          <path class="cl" d="M254,240 L186,182"/><text class="ct" x="222" y="256">Gloves stay up</text><text class="ct" x="222" y="270">through the roll</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Bend the knees to drop your head under the incoming hook, shift weight across, rise on the other side.</li>
+            <li>Eyes stay on the opponent the whole way. Looking at the floor is diving, not rolling.</li>
+            <li>You surface on the outside of their punch with your own 3 loaded for free.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> bending at the waist with straight legs. Your head drops but your chin points at the floor and your back does the work. Squat, don't bow.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=XIja1S9SXI4" target="_blank" rel="noopener">How to roll a punch (Tony Jeffries)</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOVEMENT ============ -->
+  <section class="pane" id="pane-movement" hidden>
+    <p class="paneintro">This program's movement is deliberately flat and grounded: feet glide, never hop. That's not a limitation, it's how the old masters moved. Top-down views show the feet; red = start, green = finish.</p>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">M1</span><span class="tech-name">The Stance</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Stance form figure">
+          <circle class="head" cx="156" cy="94" r="19"/>
+          <path class="limb" d="M154,124 L152,208"/>
+          <path class="limb" d="M152,208 L184,262 L198,318"/>
+          <path class="limb" d="M152,208 L120,262 L102,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M86,326 L118,322"/>
+          <path class="limb" d="M156,126 L190,166 L180,120"/>
+          <circle class="glove" cx="178" cy="108" r="13"/>
+          <path class="limb" d="M152,126 L120,164 L134,120"/>
+          <circle class="glove" cx="134" cy="106" r="13"/>
+          <path class="cl" d="M92,62 L140,84"/><text class="ct" x="10" y="56">Chin down,</text><text class="ct" x="10" y="70">eyes up</text>
+          <path class="cl" d="M248,72 L192,100"/><text class="ct" x="216" y="64">Hands at</text><text class="ct" x="216" y="78">cheekbones</text>
+          <path class="cl" d="M250,196 L162,180"/><text class="ct" x="224" y="212">Weight 50/50,</text><text class="ct" x="224" y="226">on the balls</text>
+          <path class="cl" d="M250,296 L206,322"/><text class="ct" x="226" y="288">Lead foot flat</text>
+          <path class="cl" d="M70,292 L100,314"/><text class="ct" x="10" y="284">Rear heel a</text><text class="ct" x="10" y="298">whisper off</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Feet shoulder-width, lead toe and rear heel roughly on one line, both feet angled about 45 degrees toward the target.</li>
+            <li>Knees soft, weight even. From here you can hit, defend, or move in any direction without adjusting first.</li>
+            <li>Test: have someone shove your chest lightly. A real stance absorbs it; a fake one staggers.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> standing too square (both shoulders facing the target). Blade slightly; you're a smaller target and the 2 loads itself.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">M2</span><span class="tech-name">Step-Drag (top-down)</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 260" role="img" aria-label="Step drag top-down">
+          <ellipse class="foot-el" cx="196" cy="80" rx="13" ry="26" opacity=".35" transform="rotate(40 196 80)"/>
+          <ellipse cx="232" cy="56" rx="13" ry="26" fill="var(--rest)" transform="rotate(40 232 56)"/>
+          <path class="thin" d="M204,70 L222,60" style="stroke-width:3" marker-end="url(#mk)"/>
+          <ellipse class="foot-el" cx="112" cy="180" rx="13" ry="26" opacity=".35" transform="rotate(55 112 180)"/>
+          <ellipse cx="148" cy="156" rx="13" ry="26" fill="var(--rest)" transform="rotate(55 148 156)"/>
+          <path class="thin" d="M120,172 L138,162" style="stroke-width:3" marker-end="url(#mk)"/>
+          <text class="ct" x="212" y="112">1. lead steps small</text>
+          <text class="ct" x="34" y="216">2. rear drags to rebuild stance</text>
+          <text class="lbl" x="240" y="24">target</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Moving toward the target: lead foot steps first, rear drags. Moving away: rear steps first, lead drags. The foot nearest your direction always moves first.</li>
+            <li>Steps of a few inches. Stance width never changes; feet never cross, never click together.</li>
+            <li>Feet skim the floor like there's paper under them. Zero bounce.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> a big first step that leaves you long and off-balance for a half second. That half second is when you get hit.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=dHUutXudf8o" target="_blank" rel="noopener">Step-drag (ExpertBoxing)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">M3</span><span class="tech-name">The Pivot (top-down)</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 260" role="img" aria-label="Pivot top-down">
+          <ellipse cx="190" cy="86" rx="14" ry="27" fill="var(--corner)" transform="rotate(40 190 86)"/>
+          <ellipse class="foot-el" cx="106" cy="190" rx="13" ry="25" opacity=".35" transform="rotate(55 106 190)"/>
+          <ellipse cx="240" cy="198" rx="13" ry="25" fill="var(--rest)" transform="rotate(-15 240 198)"/>
+          <path class="motion" d="M116,172 A 92 92 0 0 0 222 188" marker-end="url(#mo)"/>
+          <text class="ct" x="150" y="42">lead foot = the hinge</text>
+          <path class="cl" d="M182,50 L188,68"/>
+          <text class="ct" x="26" y="232">rear foot swings like a gate</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Weight rolls onto the ball of the lead foot; the rear foot sweeps 45 to 90 degrees around it.</li>
+            <li>Hands stay up and you stay facing the target the entire time; only your position changes.</li>
+            <li>Use it to exit after combos, to face a circling opponent, and to power the check hook.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> pivoting on a flat, planted foot. Heel up, weight light, or the knee takes the twist.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=72M0E5LM92M" target="_blank" rel="noopener">How to pivot (Tony Jeffries)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">M4</span><span class="tech-name">Angling Out (top-down)</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 260" role="img" aria-label="Angle out top-down">
+          <circle cx="170" cy="52" r="22" fill="var(--ink-soft)" opacity=".5"/>
+          <text class="lbl" x="142" y="24">bag / opponent</text>
+          <circle class="foot-el" cx="170" cy="150" r="15" opacity=".45"/>
+          <circle cx="248" cy="192" r="15" fill="var(--rest)"/>
+          <path class="thin" d="M186,158 L230,182" style="stroke-width:3" marker-end="url(#mk)"/>
+          <path class="incoming" d="M170,128 L170,86" style="stroke-width:4; stroke-dasharray:4 4"/>
+          <text class="ct" x="52" y="162">1. finish the combo here</text>
+          <text class="ct" x="180" y="232">2. two step-drags, 45&deg; off</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>The instant your last punch lands, take two quick step-drags at 45 degrees, left or right.</li>
+            <li>The opponent must turn to find you. During that turn they can't punch and you can.</li>
+            <li>On the bag: punch, angle out, and re-attack from the new line before the bag swings back.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> stepping straight back instead. Straight back keeps you on their tracks; they follow and land. Off the line, they have to reset.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HIGH LEVEL ============ -->
+  <section class="pane" id="pane-advanced" hidden>
+    <p class="paneintro">These separate advanced fighters from strong beginners. Earn them: they only work when the basics underneath are automatic.</p>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">H1</span><span class="tech-name">The Feint</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Feint form figure">
+          <circle class="head" cx="158" cy="92" r="19"/>
+          <path class="limb" d="M154,122 L152,208"/>
+          <path class="limb" d="M152,208 L184,262 L198,318"/>
+          <path class="limb" d="M152,208 L120,262 L102,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M86,326 L118,322"/>
+          <path class="limb" d="M154,124 L198,120 L216,116"/>
+          <circle class="glove" cx="228" cy="114" r="13"/>
+          <path class="limb" d="M152,128 L130,162 L138,124"/>
+          <circle class="glove" cx="140" cy="112" r="12"/>
+          <path class="motion" d="M244,112 L282,106" marker-end="url(#mo)"/>
+          <text class="ct" x="292" y="102" style="font-size:20px">?</text>
+          <path class="cl" d="M250,62 L232,100"/><text class="ct" x="182" y="54">Half-out, then stop</text>
+          <path class="cl" d="M92,66 L142,86"/><text class="ct" x="8" y="60">Shoulder + knee</text><text class="ct" x="8" y="74">sell the lie</text>
+          <path class="cl" d="M250,296 L204,322"/><text class="ct" x="212" y="288">Weight loads like</text><text class="ct" x="212" y="302">a real punch</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>A punch you show but don't throw. The first 6 inches must be identical to your real jab: same shoulder, same knee, same eyes.</li>
+            <li>Watch what their body answers with. Flinch high? The body is open. Parry hand drops? Jab is home free.</li>
+            <li>Rhythm: feint, read, punish. Feint-2, feint-body jab, and double-feint-3 are the classics.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> lazy half-hearted feints. If it wouldn't scare YOU, it won't move them. Sell every one like it's real.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">H2</span><span class="tech-name">The Check Hook</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Check hook form figure">
+          <circle class="head" cx="156" cy="92" r="19"/>
+          <path class="limb" d="M152,122 L152,208"/>
+          <path class="limb" d="M152,208 L184,262 L196,318"/>
+          <path class="limb" d="M152,208 L120,262 L102,318"/>
+          <path class="thin" d="M182,326 L218,320"/>
+          <path class="thin" d="M86,326 L118,324"/>
+          <path class="limb" d="M154,124 L214,132 L190,100"/>
+          <circle class="glove" cx="184" cy="94" r="13"/>
+          <path class="limb" d="M150,128 L128,162 L136,124"/>
+          <circle class="glove" cx="138" cy="112" r="12"/>
+          <path class="incoming" d="M330,150 L252,150" marker-end="url(#mi)"/>
+          <path class="motion" d="M108,332 Q66,344 40,318" marker-end="url(#mo)"/>
+          <path class="cl" d="M262,110 L268,142"/><text class="ct" x="212" y="102">They rush in</text>
+          <path class="cl" d="M244,60 L192,88"/><text class="ct" x="196" y="52">You hook...</text>
+          <path class="cl" d="M96,286 L74,324"/><text class="ct" x="12" y="276">...while pivoting</text><text class="ct" x="12" y="290">off their tracks</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Against an opponent charging forward: throw the lead hook WHILE pivoting your rear foot away.</li>
+            <li>Their momentum walks them into the punch and past where you were standing. A matador's move.</li>
+            <li>Drill it on the bag: push it hard so it swings at you, hook + pivot as it arrives. The bag sails through empty space.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> hooking first, pivoting second. They happen in the same beat or you get run over.</div>
+          <div class="watch">Watch: <a href="https://www.youtube.com/watch?v=MLIHgwx-SKY" target="_blank" rel="noopener">Mastering the check hook (Barry Robinson)</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">H3</span><span class="tech-name">The Shoulder Roll</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Shoulder roll form figure">
+          <circle class="head" cx="146" cy="96" r="19"/>
+          <path class="limb" d="M150,124 L148,208"/>
+          <path class="limb" d="M148,208 L182,262 L196,318"/>
+          <path class="limb" d="M148,208 L116,262 L100,318"/>
+          <path class="thin" d="M182,326 L220,326"/>
+          <path class="thin" d="M84,326 L116,322"/>
+          <circle class="head" cx="176" cy="118" r="12"/>
+          <path class="limb" d="M172,126 L182,192"/>
+          <path class="limb" d="M148,128 L118,162 L128,122"/>
+          <circle class="glove" cx="130" cy="110" r="12"/>
+          <path class="incoming" d="M330,102 L196,112"/>
+          <path class="motion" d="M194,114 L212,152" marker-end="url(#mo)"/>
+          <path class="cl" d="M240,62 L184,106"/><text class="ct" x="192" y="54">Lead shoulder</text><text class="ct" x="192" y="68">lifts to the chin</text>
+          <path class="cl" d="M262,190 L218,148"/><text class="ct" x="232" y="206">Punch skids off</text>
+          <path class="cl" d="M82,64 L134,88"/><text class="ct" x="10" y="58">Chin hides</text><text class="ct" x="10" y="72">behind it</text>
+          <path class="cl" d="M84,148 L120,116"/><text class="ct" x="10" y="162">Rear hand loaded</text><text class="ct" x="10" y="176">to counter 2</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Blade your body, drop the lead hand low, and raise the lead shoulder to your chin. Their cross glances off the shoulder.</li>
+            <li>As the punch slides off, your body is already rotated to fire the counter 2. Defense and offense in one motion.</li>
+            <li>The Mayweather/Philly shell signature. Drill it slowly against the swinging bag before trusting it.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> using it before the basics are automatic. This is a timing weapon for Phase 3, not a beginner guard.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">H4</span><span class="tech-name">The Cross Counter (slip + 2)</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Cross counter form figure">
+          <circle class="head" cx="124" cy="104" r="19"/>
+          <path class="limb" d="M150,208 L134,134"/>
+          <path class="limb" d="M150,208 L184,262 L198,318"/>
+          <path class="limb" d="M150,208 L118,262 L100,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M84,326 L116,320"/>
+          <path class="limb" d="M136,134 L200,120 L246,108"/>
+          <circle class="glove" cx="260" cy="105" r="13"/>
+          <path class="limb" d="M132,136 L104,168 L110,130"/>
+          <circle class="glove" cx="110" cy="118" r="12"/>
+          <path class="incoming" d="M330,128 L172,134" marker-end="url(#mi)"/>
+          <path class="cl" d="M82,64 L112,90"/><text class="ct" x="10" y="56">Slip outside</text><text class="ct" x="10" y="70">their jab</text>
+          <path class="cl" d="M254,62 L260,92"/><text class="ct" x="164" y="54">Your 2 flies over their arm</text>
+          <path class="cl" d="M256,180 L240,136"/><text class="ct" x="222" y="196">Their jab,</text><text class="ct" x="222" y="210">now underneath</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Slip their jab to your lead side and fire the 2 over the top of their extended arm in the same beat.</li>
+            <li>Their own jab blocks their vision; your cross arrives on the blind line. The oldest knockout in boxing.</li>
+            <li>Solo drill: voice coach says "slip", you slip and IMMEDIATELY throw the 2. Wire them together.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> slip, pause, then punch. The slip IS the wind-up; counter inside the same second or the window closes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">H5</span><span class="tech-name">The Body Jab</span></div>
+      <div class="tech-body">
+        <div class="fig"><svg viewBox="0 0 340 350" role="img" aria-label="Body jab form figure">
+          <circle class="head" cx="154" cy="112" r="19"/>
+          <path class="limb" d="M150,142 L150,218"/>
+          <path class="limb" d="M150,218 L186,268 L198,318"/>
+          <path class="limb" d="M150,218 L116,268 L102,318"/>
+          <path class="thin" d="M184,326 L222,326"/>
+          <path class="thin" d="M86,326 L118,322"/>
+          <path class="limb" d="M152,144 L206,148 L244,156"/>
+          <circle class="glove" cx="258" cy="160" r="13"/>
+          <path class="limb" d="M148,146 L126,178 L134,142"/>
+          <circle class="glove" cx="136" cy="130" r="12"/>
+          <path class="cl" d="M250,112 L258,146"/><text class="ct" x="176" y="104">Angled down to the ribs</text>
+          <path class="cl" d="M90,80 L140,102"/><text class="ct" x="10" y="72">Head stays behind</text><text class="ct" x="10" y="86">the shoulder</text>
+          <path class="cl" d="M78,252 L112,264"/><text class="ct" x="8" y="244">Level change from</text><text class="ct" x="8" y="258">the knees</text>
+        </svg></div>
+        <div class="pts">
+          <ul>
+            <li>Bend the KNEES to change levels, keep the back fairly tall, and spear the jab to where the solar plexus would be.</li>
+            <li>Your rear hand stays extra tight; your head is closer to their counters down there.</li>
+            <li>The payoff: after two body jabs, their guard drips down and your head shots walk in free.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> bowing at the waist with the head diving forward. That's a free uppercut for them. Knees down, head back.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-head"><span class="tech-num">H6</span><span class="tech-name">Tempo Changes (no diagram needed)</span></div>
+      <div class="tech-body">
+        <div class="pts" style="flex-basis:100%">
+          <ul>
+            <li>Fighters get timed when everything is the same speed. Break your own rhythm: light-light-HARD, slow feint then explosive 1-2, long pause then a burst.</li>
+            <li>On the bag: throw two touch punches at 40%, then detonate the third at 95%. The third punch is the one that lands in real life.</li>
+            <li>Same trick with feet: two lazy step-drags, then one explosive angle-out. Predictable rhythm is the last beginner habit to die.</li>
+            <li>Listen for it in the voice coach reaction round: react at FULL speed to slow, randomly-timed calls. That gap between calm and explosion is the skill.</li>
+          </ul>
+          <div class="mist"><b>Most common mistake:</b> training everything at one medium pace. Medium never hurt anyone. Train touches and train bombs; delete medium.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var tabs = document.querySelectorAll(".tabs button");
+  function show(name) {
+    tabs.forEach(function (b) { b.classList.toggle("on", b.dataset.pane === name); });
+    ["punches", "defense", "movement", "advanced"].forEach(function (p) {
+      document.getElementById("pane-" + p).hidden = (p !== name);
+    });
+    try { history.replaceState(null, "", "#" + name); } catch (e) {}
+  }
+  tabs.forEach(function (b) {
+    b.addEventListener("click", function () { show(b.dataset.pane); window.scrollTo(0, 0); });
+  });
+  var h = location.hash.replace("#", "");
+  if (["punches", "defense", "movement", "advanced"].indexOf(h) >= 0) show(h);
+})();
+</script>
+</body>
+</html>
