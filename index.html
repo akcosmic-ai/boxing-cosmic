@@ -3,56 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="30-minute home boxing bag program with round timer, low-impact footwork, and 12-week progression.">
+<meta name="description" content="30-minute home boxing bag program with round timer, voice coach, daily punch tasks, progress tracking, low-impact footwork, and a self-defense module.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#129354;</text></svg>">
 <title>The 30-Minute Bag Program</title>
 <style>
   :root {
-    --ring: #f4f2ec;          /* canvas off-white */
+    --ring: #f4f2ec;
     --ring-2: #e9e6dc;
-    --ink: #1d2430;           /* navy-slate ink */
+    --ink: #1d2430;
     --ink-soft: #4c5563;
     --line: #cfc9ba;
-    --corner: #b5432e;        /* worn leather red */
+    --corner: #b5432e;
     --corner-soft: #f3ddd7;
-    --rest: #2c6e63;          /* rest-corner green */
+    --rest: #2c6e63;
     --rest-soft: #dcebe6;
     --card: #ffffff;
     --tape: #f5efdc;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --ring: #171c26;
-      --ring-2: #10141c;
-      --ink: #ece7db;
-      --ink-soft: #a6a89e;
-      --line: #333c4c;
-      --corner: #e06a4f;
-      --corner-soft: #3a2620;
-      --rest: #5cb8a4;
-      --rest-soft: #1c332e;
-      --card: #202736;
-      --tape: #262c39;
+      --ring: #171c26; --ring-2: #10141c; --ink: #ece7db; --ink-soft: #a6a89e;
+      --line: #333c4c; --corner: #e06a4f; --corner-soft: #3a2620;
+      --rest: #5cb8a4; --rest-soft: #1c332e; --card: #202736; --tape: #262c39;
     }
-  }
-  :root[data-theme="dark"] {
-    --ring: #171c26; --ring-2: #10141c; --ink: #ece7db; --ink-soft: #a6a89e;
-    --line: #333c4c; --corner: #e06a4f; --corner-soft: #3a2620;
-    --rest: #5cb8a4; --rest-soft: #1c332e; --card: #202736; --tape: #262c39;
-  }
-  :root[data-theme="light"] {
-    --ring: #f4f2ec; --ring-2: #e9e6dc; --ink: #1d2430; --ink-soft: #4c5563;
-    --line: #cfc9ba; --corner: #b5432e; --corner-soft: #f3ddd7;
-    --rest: #2c6e63; --rest-soft: #dcebe6; --card: #ffffff; --tape: #f5efdc;
   }
   * { box-sizing: border-box; }
   body {
-    background: var(--ring);
-    color: var(--ink);
+    background: var(--ring); color: var(--ink);
     font-family: "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.55;
-    margin: 0;
-    padding: 0 16px 80px;
+    line-height: 1.55; margin: 0; padding: 0 16px 80px;
   }
   .wrap { max-width: 760px; margin: 0 auto; }
   header.hero { padding: 44px 0 20px; border-bottom: 3px solid var(--ink); }
@@ -62,10 +41,16 @@
   }
   h1 {
     font-size: clamp(34px, 7vw, 56px); line-height: 1.02; margin: 0 0 12px;
-    font-weight: 800; letter-spacing: -.015em; text-transform: uppercase;
-    text-wrap: balance;
+    font-weight: 800; letter-spacing: -.015em; text-transform: uppercase; text-wrap: balance;
   }
   .lede { color: var(--ink-soft); font-size: 17px; max-width: 60ch; margin: 0 0 8px; }
+  nav.toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  nav.toc a {
+    font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    text-decoration: none; color: var(--ink); background: var(--card);
+    border: 1px solid var(--line); border-radius: 3px; padding: 6px 10px;
+  }
+  nav.toc a:hover { border-color: var(--corner); color: var(--corner); }
   h2 {
     font-size: 14px; letter-spacing: .16em; text-transform: uppercase;
     font-weight: 800; margin: 44px 0 14px; display: flex; align-items: center; gap: 12px;
@@ -93,21 +78,40 @@
   .clock.work { color: var(--corner); }
   .clock.rest { color: var(--rest); }
   .roundlabel { color: var(--ink-soft); font-size: 14px; margin-bottom: 14px; }
-  .timer button {
+  .timer button, .daily button, .progress button {
     font: inherit; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
     font-size: 13px; padding: 10px 20px; border-radius: 4px; cursor: pointer;
-    border: 2px solid var(--ink); background: var(--card); color: var(--ink);
-    margin-right: 8px;
+    border: 2px solid var(--ink); background: var(--card); color: var(--ink); margin-right: 8px;
   }
-  .timer button.primary { background: var(--ink); color: var(--ring); }
-  .timer button:focus-visible { outline: 3px solid var(--corner); outline-offset: 2px; }
-  .focusline {
-    margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line);
-    font-size: 15px;
-  }
+  .timer button.primary, .daily button.primary { background: var(--ink); color: var(--ring); }
+  button:focus-visible { outline: 3px solid var(--corner); outline-offset: 2px; }
+  button:disabled { opacity: .45; cursor: default; }
+  .timer-opts { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 14px; }
+  .timer-opts label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .timer-opts select { font: inherit; padding: 4px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--card); color: var(--ink); }
+  .focusline { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 15px; }
   .focusline strong { color: var(--corner); }
 
-  /* ---- low-impact rules ---- */
+  /* ---- daily task + progress ---- */
+  .daily, .progress {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 16px 18px; margin: 14px 0;
+  }
+  .daily .task { font-size: 16px; font-weight: 700; margin: 6px 0 10px; }
+  .statrow { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 14px; }
+  .stat {
+    flex: 1 1 100px; background: var(--ring-2); border-radius: 4px; padding: 10px 12px;
+    text-align: center; min-width: 100px;
+  }
+  .stat .n { font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--corner); }
+  .stat .l { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 700; }
+  .heatmap { display: grid; grid-template-rows: repeat(7, 12px); grid-auto-flow: column; gap: 3px; margin: 8px 0 4px; }
+  .heatmap div { width: 12px; height: 12px; border-radius: 2px; background: var(--ring-2); }
+  .heatmap div.d1 { background: var(--rest); opacity: .55; }
+  .heatmap div.d2 { background: var(--corner); }
+  .heatnote { font-size: 12px; color: var(--ink-soft); }
+
+  /* ---- rules ---- */
   .rules {
     background: var(--tape); border-left: 4px solid var(--corner);
     padding: 16px 18px; border-radius: 0 6px 6px 0; margin: 8px 0 0;
@@ -150,6 +154,21 @@
     border-radius: 4px; display: block; background: var(--ring-2);
   }
 
+  /* ---- diagrams ---- */
+  .diagrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .diag { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
+  .diag .t { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+  .diag .s { font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+  .diag svg { width: 100%; height: auto; display: block; }
+
+  /* ---- legend ---- */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+  .legend span {
+    font-size: 13px; font-weight: 700; background: var(--card);
+    border: 1px solid var(--line); border-radius: 3px; padding: 4px 10px;
+  }
+  .legend b { color: var(--corner); }
+
   /* ---- progression table ---- */
   .tablewrap { overflow-x: auto; }
   table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 560px; }
@@ -163,8 +182,7 @@
   /* ---- video library ---- */
   .vid {
     display: block; background: var(--card); border: 1px solid var(--line);
-    border-radius: 6px; padding: 14px 16px; margin: 10px 0; text-decoration: none;
-    color: var(--ink);
+    border-radius: 6px; padding: 14px 16px; margin: 10px 0; text-decoration: none; color: var(--ink);
   }
   .vid:hover { border-color: var(--corner); }
   .vid .t { font-weight: 700; color: var(--corner); }
@@ -174,22 +192,56 @@
     .timer button:active { transform: translateY(1px); }
   }
 </style>
-
+</head>
+<body>
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Home Boxing &middot; 2 to 3 sessions per week &middot; 30 minutes</p>
+    <p class="eyebrow">Home Boxing &middot; Daily practice &middot; 30-minute sessions</p>
     <h1>The 30-Minute Bag Program</h1>
-    <p class="lede">A complete program for the home-trained boxer, deliberately low-impact and joint-friendly. Every session is the same skeleton: 5 minute warm-up, six 3-minute rounds with 1 minute rest, short cooldown. What changes over the weeks is what you do inside each round.</p>
+    <p class="lede">A complete program for the home-trained boxer, deliberately low-impact and joint-friendly. Two session levels, a voice coach that calls combos at you, a daily punch task, and progress tracking saved on your device.</p>
+    <nav class="toc">
+      <a href="#timer">Timer</a><a href="#daily">Daily Task</a><a href="#progress">Progress</a><a href="#foundation">Foundation</a><a href="#advanced">Advanced</a><a href="#diagrams">Diagrams</a><a href="#defense">Self-Defense</a><a href="#library">Library</a>
+    </nav>
   </header>
 
-  <section class="timer" aria-label="Round timer">
+  <section class="timer" id="timer" aria-label="Round timer">
     <span class="timer-state idle" id="state">Ready</span>
     <div class="clock" id="clock">3:00</div>
     <div class="roundlabel" id="roundlabel">Round 1 of 6 &middot; 3:00 work / 1:00 rest</div>
     <button class="primary" id="startbtn">Start</button>
     <button id="resetbtn">Reset</button>
+    <div class="timer-opts">
+      <label>Session
+        <select id="sessionsel">
+          <option value="foundation">Foundation</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="coachchk"> Voice coach (calls combos)</label>
+    </div>
     <div class="focusline" id="focusline"><strong>Round 1:</strong> Shadowbox and movement. No bag yet.</div>
   </section>
+
+  <h2 id="daily">Daily Punch Task</h2>
+  <p>Sessions build skill; daily reps make it permanent. Ten minutes or less, every day, even on non-session days. Today's task rotates automatically.</p>
+  <div class="daily">
+    <div class="s" style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:800; color:var(--ink-soft);" id="dailyday">Today</div>
+    <div class="task" id="dailytask">Loading...</div>
+    <button class="primary" id="dailybtn">Mark today done</button>
+  </div>
+
+  <h2 id="progress">Progress</h2>
+  <div class="progress">
+    <div class="statrow">
+      <div class="stat"><div class="n" id="stat-streak">0</div><div class="l">Day streak</div></div>
+      <div class="stat"><div class="n" id="stat-week">0/3</div><div class="l">Sessions this week</div></div>
+      <div class="stat"><div class="n" id="stat-total">0</div><div class="l">Total sessions</div></div>
+      <div class="stat"><div class="n" id="stat-phase">1</div><div class="l" id="stat-phasename">Foundation</div></div>
+    </div>
+    <div class="heatmap" id="heatmap" aria-label="Training heatmap, last 8 weeks"></div>
+    <div class="heatnote">Last 8 weeks. Green = daily task, red = full session. Data lives only in this browser.</div>
+    <div style="margin-top:12px"><button id="wipebtn">Clear all data</button></div>
+  </div>
 
   <h2>Ground Rules: Low-Impact by Design</h2>
   <div class="rules">
@@ -203,6 +255,11 @@
     </ul>
   </div>
 
+  <h2>Punch Numbers (used by the voice coach)</h2>
+  <div class="legend">
+    <span><b>1</b> Jab</span><span><b>2</b> Cross</span><span><b>3</b> Lead hook</span><span><b>4</b> Rear hook</span><span><b>5</b> Rear uppercut</span><span><b>6</b> Lead uppercut</span>
+  </div>
+
   <h2>Warm-Up &middot; 5 Minutes, Before the Timer</h2>
   <div class="round"><div class="round-body">
     <ul>
@@ -213,7 +270,7 @@
     </ul>
   </div></div>
 
-  <h2>The Six Rounds &middot; 3:00 Work / 1:00 Rest</h2>
+  <h2 id="foundation">Foundation Session &middot; 3:00 Work / 1:00 Rest</h2>
 
   <div class="round">
     <div class="round-head"><span class="round-num">Round 1</span><span class="round-name">Shadowbox + Movement (no bag)</span></div>
@@ -310,43 +367,233 @@
     </div>
   </div>
 
+  <h2 id="advanced">Advanced Session &middot; Unlocks in Phase 2</h2>
+  <p>Same timer, harder script. Switch the session selector to Advanced once you can complete the Foundation session with clean form (typically weeks 5 and beyond). Turn on the voice coach here: reacting to called combos instead of pre-planning them is the closest solo substitute for a coach holding pads.</p>
+
   <div class="round">
-    <div class="round-head"><span class="round-num">Rest Minutes</span><span class="round-name">Active Recovery</span></div>
+    <div class="round-head"><span class="round-num">Round 1</span><span class="round-name">Footwork + Pivots (no bag)</span></div>
     <div class="round-body">
-      <p>During each 1:00 rest: walk slowly, shake out arms, sip water, and rehearse the next round's focus in your head at 20% speed. Do not sit down.</p>
+      <p>Everything from Foundation Round 1, plus pivots. The pivot is how you face a moving opponent without crossing your feet, and how you exit after combinations.</p>
+      <ul>
+        <li>Step-drag in all four directions, then pivot 45 to 90 degrees off the lead foot, both directions.</li>
+        <li>Pattern: jab, pivot left, jab, pivot right. Reset stance every time.</li>
+      </ul>
+      <div class="cue"><b>Cue:</b> pivot light: heel up, weight through the ball of the lead foot, rear foot swings like a gate.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; How to pivot (Tony Jeffries)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/72M0E5LM92M" title="How To Pivot in Boxing 101" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
-  <h2>Cooldown &middot; 2 to 3 Minutes</h2>
+  <div class="round">
+    <div class="round-head"><span class="round-num">Round 2</span><span class="round-name">Jab Variations + Feints</span></div>
+    <div class="round-body">
+      <p>The jab becomes a toolset: range-finder, power jab stepping in, up-jab from low guard, body jab, and the feint. A feint is a jab you show but never throw, sold with the shoulder and front knee.</p>
+      <ul>
+        <li>Cycle: single, double, body jab, feint-then-jab, feint-then-cross.</li>
+        <li>Every feint must look identical to your real jab for the first 6 inches.</li>
+      </ul>
+      <div class="cue"><b>Cue:</b> if the bag were a person, your feint should make them flinch. Sell it with the whole body, not the hand.</div>
+    </div>
+  </div>
+
+  <div class="round">
+    <div class="round-head"><span class="round-num">Round 3</span><span class="round-name">Uppercuts in Combination</span></div>
+    <div class="round-body">
+      <p>The uppercut is a short-range punch thrown from the legs: dip the same-side knee slightly, then drive up through the hip. On the bag, aim where the chin would be, and keep it tight, not a swing from the floor.</p>
+      <ul>
+        <li>First minute: slow rear uppercuts (5) and lead uppercuts (6) in isolation.</li>
+        <li>Then combinations: 1-2-5, 2-5-2, 1-6-3, 6-3-2.</li>
+      </ul>
+      <div class="cue"><b>Cue:</b> elbow stays in front of your body, palm turns to face you. If your elbow flares behind you, it is a swing, not an uppercut.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; Lead and rear uppercut in slow motion (FightCamp)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/KcagWYVfvBg" title="How To Throw A Proper Rear And Lead Uppercut" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="round">
+    <div class="round-head"><span class="round-num">Round 4</span><span class="round-name">Slip-Roll-Counter Chains</span></div>
+    <div class="round-body">
+      <p>Chain defenses together and always end with a counter. The roll (ducking under an imaginary hook by bending the knees and tracing a U with your head) is your new tool. Keep rolls small and knee-driven, never back-driven.</p>
+      <ul>
+        <li>Chains: slip left, slip right, 2. Catch, roll, 3. Slip right, roll left, 2-3.</li>
+        <li>Push the bag and work all chains off its swing.</li>
+      </ul>
+      <div class="cue"><b>Cue:</b> eyes stay on the bag through every roll. If you look at the floor, you are diving, not rolling.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; How to roll a punch (Tony Jeffries)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/XIja1S9SXI4" title="How to Roll a Punch in Boxing" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="round">
+    <div class="round-head"><span class="round-num">Round 5</span><span class="round-name">Combos, Exits + the Check Hook</span></div>
+    <div class="round-body">
+      <p>Every combination now ends with an exit: an angle step or a pivot. Then add boxing's great counter to an aggressive opponent, the check hook: a lead hook thrown while pivoting away from the pressure.</p>
+      <ul>
+        <li>Patterns: 1-2-3 pivot out. 1-2-5-2 angle left. 2-3-2 angle right.</li>
+        <li>Check hook drill: push the bag hard so it swings at you, throw the 3 while pivoting your rear foot away. The bag should sail past where you were.</li>
+      </ul>
+      <div class="cue"><b>Cue:</b> the check hook is timing, not power. Pivot and punch happen together, like a matador's turn.</div>
+      <div class="formvid">
+        <div class="label">Watch the form &middot; Mastering the check hook (Barry Robinson)</div>
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/MLIHgwx-SKY" title="Mastering the Check Hook" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="round">
+    <div class="round-head"><span class="round-num">Round 6</span><span class="round-name">Reaction Round</span></div>
+    <div class="round-body">
+      <p>Turn the voice coach ON for this round. It calls combos and defensive commands at random intervals; execute instantly, then return to movement. No planning allowed. This is the round that builds fight reflexes.</p>
+      <ul>
+        <li>Between calls: constant step-drag movement and jabs.</li>
+        <li>On a defensive call (slip, roll): execute it and always counter after.</li>
+      </ul>
+      <div class="cue"><b>Cue:</b> speed of reaction beats speed of hand. A half-second late but committed beats instant and hesitant.</div>
+    </div>
+  </div>
+
+  <h2 id="diagrams">Form Diagrams &middot; Feet and Head</h2>
+  <p>Top-down views of the footwork, front views of the head movement. Red is where you start, green is where you end.</p>
+  <div class="diagrid">
+    <div class="diag">
+      <div class="t">Stance (top-down)</div>
+      <div class="s">Feet shoulder-width, lead toe and rear heel on one line, both feet angled ~45&deg;.</div>
+      <svg viewBox="0 0 200 160" role="img" aria-label="Stance diagram">
+        <line x1="40" y1="150" x2="175" y2="20" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 4"/>
+        <ellipse cx="150" cy="45" rx="13" ry="26" fill="var(--corner)" transform="rotate(40 150 45)"/>
+        <ellipse cx="65" cy="120" rx="13" ry="26" fill="var(--corner)" opacity=".55" transform="rotate(55 65 120)"/>
+        <text x="150" y="95" font-size="11" fill="var(--ink-soft)">lead foot</text>
+        <text x="20" y="100" font-size="11" fill="var(--ink-soft)">rear foot</text>
+        <text x="95" y="150" font-size="11" fill="var(--ink-soft)">target is up-right</text>
+      </svg>
+    </div>
+    <div class="diag">
+      <div class="t">Step-drag forward</div>
+      <div class="s">1: lead foot steps small. 2: rear foot drags to rebuild the same stance. Feet never cross, never leave the floor.</div>
+      <svg viewBox="0 0 200 160" role="img" aria-label="Step-drag diagram">
+        <ellipse cx="120" cy="50" rx="11" ry="22" fill="var(--corner)" opacity=".35" transform="rotate(40 120 50)"/>
+        <ellipse cx="150" cy="30" rx="11" ry="22" fill="var(--rest)" transform="rotate(40 150 30)"/>
+        <path d="M126 42 L142 32" stroke="var(--ink)" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+        <ellipse cx="55" cy="125" rx="11" ry="22" fill="var(--corner)" opacity=".35" transform="rotate(55 55 125)"/>
+        <ellipse cx="85" cy="105" rx="11" ry="22" fill="var(--rest)" transform="rotate(55 85 105)"/>
+        <path d="M62 118 L77 108" stroke="var(--ink)" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+        <text x="130" y="75" font-size="11" fill="var(--ink-soft)">1. step</text>
+        <text x="40" y="90" font-size="11" fill="var(--ink-soft)">2. drag</text>
+        <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="var(--ink)"/></marker></defs>
+      </svg>
+    </div>
+    <div class="diag">
+      <div class="t">Pivot (exit move)</div>
+      <div class="s">Weight on the ball of the lead foot; the rear foot swings around it like a gate, 45 to 90 degrees.</div>
+      <svg viewBox="0 0 200 160" role="img" aria-label="Pivot diagram">
+        <ellipse cx="115" cy="55" rx="12" ry="24" fill="var(--corner)" transform="rotate(40 115 55)"/>
+        <ellipse cx="55" cy="125" rx="11" ry="22" fill="var(--corner)" opacity=".35" transform="rotate(55 55 125)"/>
+        <ellipse cx="145" cy="130" rx="11" ry="22" fill="var(--rest)" transform="rotate(-15 145 130)"/>
+        <path d="M60 110 A 62 62 0 0 0 132 122" stroke="var(--ink)" stroke-width="2" fill="none" stroke-dasharray="4 4" marker-end="url(#arr2)"/>
+        <text x="98" y="30" font-size="11" fill="var(--ink-soft)">lead foot = hinge</text>
+        <text x="20" y="95" font-size="11" fill="var(--ink-soft)">rear swings</text>
+        <defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="var(--ink)"/></marker></defs>
+      </svg>
+    </div>
+    <div class="diag">
+      <div class="t">Angle out after a combo</div>
+      <div class="s">Finish punching, then two step-drags at 45 degrees. The opponent must turn to find you; that turn is your opening.</div>
+      <svg viewBox="0 0 200 160" role="img" aria-label="Angle out diagram">
+        <circle cx="100" cy="30" r="16" fill="var(--ink-soft)" opacity=".5"/>
+        <text x="83" y="16" font-size="11" fill="var(--ink-soft)">bag/opponent</text>
+        <circle cx="100" cy="95" r="12" fill="var(--corner)" opacity=".45"/>
+        <circle cx="152" cy="120" r="12" fill="var(--rest)"/>
+        <path d="M112 100 L138 114" stroke="var(--ink)" stroke-width="2" fill="none" marker-end="url(#arr3)"/>
+        <path d="M100 83 L100 52" stroke="var(--corner)" stroke-width="2" fill="none" stroke-dasharray="3 3"/>
+        <text x="30" y="105" font-size="11" fill="var(--ink-soft)">punch here</text>
+        <text x="120" y="145" font-size="11" fill="var(--ink-soft)">end here, 45&deg;</text>
+        <defs><marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="var(--ink)"/></marker></defs>
+      </svg>
+    </div>
+    <div class="diag">
+      <div class="t">Slip (front view)</div>
+      <div class="s">Head moves one head-width off the centerline. Small knee and waist bend; eyes never drop.</div>
+      <svg viewBox="0 0 200 160" role="img" aria-label="Slip diagram">
+        <line x1="100" y1="15" x2="100" y2="145" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 4"/>
+        <circle cx="100" cy="45" r="16" fill="var(--corner)" opacity=".4"/>
+        <circle cx="68" cy="62" r="16" fill="var(--rest)"/>
+        <circle cx="132" cy="62" r="16" fill="var(--rest)" opacity=".55"/>
+        <path d="M88 52 L78 57" stroke="var(--ink)" stroke-width="2" marker-end="url(#arr4)"/>
+        <text x="30" y="105" font-size="11" fill="var(--ink-soft)">slip left</text>
+        <text x="120" y="105" font-size="11" fill="var(--ink-soft)">slip right</text>
+        <text x="55" y="135" font-size="11" fill="var(--ink-soft)">one head-width is enough</text>
+        <defs><marker id="arr4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="var(--ink)"/></marker></defs>
+      </svg>
+    </div>
+    <div class="diag">
+      <div class="t">Roll under (front view)</div>
+      <div class="s">Head traces a U under the incoming hook. Knees drive the dip; the back stays fairly upright.</div>
+      <svg viewBox="0 0 200 160" role="img" aria-label="Roll diagram">
+        <path d="M55 50 Q 100 130 145 50" stroke="var(--ink)" stroke-width="2.5" fill="none" stroke-dasharray="5 4" marker-end="url(#arr5)"/>
+        <circle cx="55" cy="50" r="15" fill="var(--corner)" opacity=".4"/>
+        <circle cx="145" cy="50" r="15" fill="var(--rest)"/>
+        <line x1="35" y1="35" x2="165" y2="35" stroke="var(--corner)" stroke-width="3"/>
+        <text x="70" y="24" font-size="11" fill="var(--ink-soft)">incoming hook</text>
+        <text x="72" y="150" font-size="11" fill="var(--ink-soft)">knees bend, eyes up</text>
+        <defs><marker id="arr5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="var(--ink)"/></marker></defs>
+      </svg>
+    </div>
+  </div>
+
+  <h2 id="defense">Self-Defense &middot; What Transfers and What Doesn't</h2>
+  <p>Boxing is one of the highest-value bases for real self-defense: distance control, timing, a trained jab and cross, and a calm head under pressure. But a street situation is not a boxing match. These are the rules that matter more than any punch.</p>
   <div class="round"><div class="round-body">
     <ul>
-      <li>1 min very slow shadowboxing, dropping intensity to a walk.</li>
-      <li>Stretch: chest doorway stretch, cross-body shoulder stretch, forearm/wrist stretch, gentle hip flexor stretch within pain-free range.</li>
+      <li><strong>The best win is the exit.</strong> Awareness, distance, and leaving early beat every technique on this page. Fighting is the last resort when escape is not available.</li>
+      <li><strong>Manage distance with your feet and your jab hand.</strong> A raised open lead hand ("stop, back up") doubles as your range-finder and looks defensive to witnesses and cameras, because it is.</li>
+      <li><strong>Bare knuckles break.</strong> Without wraps and gloves, straight punches to the skull crack hands. Palm-heel strikes hit almost as hard with far less risk. Train them on the bag occasionally: same mechanics as the cross, contact with the heel of the palm.</li>
+      <li><strong>Never go to the ground by choice, and never stay.</strong> Your footwork training is your anti-takedown base: low, wide, feet never crossed.</li>
+      <li><strong>One committed exit beats a combination.</strong> In a real situation the goal of any strike is to create the half-second you need to leave, not to win rounds.</li>
+      <li><strong>Know your local self-defense laws.</strong> Proportional response and duty-to-retreat rules vary. A trained person is held to a higher standard.</li>
     </ul>
+    <div class="formvid">
+      <div class="label">Watch &middot; Real-world self defense from an Olympic boxer (Tony Jeffries)</div>
+      <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/n9hZchoDZ1Q" title="Win Any Street Fight: 3 real-world self defense tips" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="formvid">
+      <div class="label">Watch &middot; How to not get hit in a real situation (Tony Jeffries)</div>
+      <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/c59PceFr-eo" title="3 Ways to Never Get Punched in a Street Fight" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="formvid">
+      <div class="label">Watch &middot; Defend any punch (Tony Jeffries)</div>
+      <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/ReD58z0jFJM" title="How to Defend Any Punch in Boxing" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="cue"><b>Honest note:</b> no solo program creates real fighting experience. The voice-coach reaction round is the closest home substitute, but pressure only comes from another human. When you finish Phase 2, find a boxing gym and buy a few pad sessions or light supervised sparring rounds, even once a month. It will multiply everything you build here.</div>
   </div></div>
 
   <h2>12-Week Progression</h2>
-  <p>Same six-round skeleton every session. You level up what happens inside the rounds, not the length of the workout.</p>
+  <p>Same six-round skeleton every session. You level up what happens inside the rounds, not the length of the workout. The Progress tracker above moves your phase automatically.</p>
   <div class="tablewrap">
     <table>
-      <tr><th>Phase</th><th>Rounds 1 to 3</th><th>Rounds 4 to 6</th><th>You graduate when</th></tr>
+      <tr><th>Phase</th><th>Session</th><th>Focus</th><th>You graduate when</th></tr>
       <tr>
-        <td>Weeks 1 to 4<br>Foundation</td>
-        <td>Exactly as written. Slow. Film yourself once a week and compare against the videos below.</td>
-        <td>Round 4 slips only (no counters yet). Round 5 just 1-2-3. Round 6 at 70%.</td>
-        <td>Stance survives 3 minutes of movement without crossing feet; jab snaps back on its own.</td>
+        <td>Phase 1<br>Foundation</td>
+        <td>Foundation session, voice coach off. Daily task every day.</td>
+        <td>Stance, step-drag, jab, 1-2, small slips. Film yourself weekly and compare against the videos.</td>
+        <td>Stance survives 3 minutes of movement without crossing feet; jab snaps back on its own. (~10 sessions)</td>
       </tr>
       <tr>
-        <td>Weeks 5 to 8<br>Connection</td>
-        <td>Round 1 add slips between steps. Round 2 add feints (show the jab, don't throw it). Round 3 add the 1-2 while moving backward.</td>
-        <td>Round 4 add counters after every defensive move. Round 5 add angles after every combo. Round 6 full intervals.</td>
-        <td>You can throw a 1-2, exit on an angle, and be back in stance without thinking about it.</td>
+        <td>Phase 2<br>Connection</td>
+        <td>Alternate Foundation and Advanced. Voice coach on for 2 rounds.</td>
+        <td>Feints, uppercuts, rolls, pivots, exits after every combo.</td>
+        <td>You can throw a 1-2, exit on an angle, and be back in stance without thinking. (~20 sessions)</td>
       </tr>
       <tr>
-        <td>Weeks 9 to 12<br>Fluidity</td>
-        <td>Round 1 shadowbox an imaginary opponent who punches back. Round 2 jab off both a forward step and a retreat. Round 3 mix tempo: light-light-HARD.</td>
-        <td>Round 4 chain two defenses then counter (catch + slip + cross). Round 5 freestyle combos with body shots. Round 6 add a 7th round if fresh.</td>
-        <td>Someone watching can't predict your rhythm. That's when you look like a boxer, not a bag hitter.</td>
+        <td>Phase 3<br>Fluidity</td>
+        <td>Advanced session, voice coach on throughout.</td>
+        <td>Check hooks, defense chains ending in counters, freestyle rounds, tempo changes (light-light-HARD).</td>
+        <td>Someone watching cannot predict your rhythm. Then go get supervised pad/sparring work monthly.</td>
       </tr>
     </table>
   </div>
@@ -363,7 +610,7 @@
     </ul>
   </div></div>
 
-  <h2>The Video Library (the underrated ones)</h2>
+  <h2 id="library">The Video Library (the underrated ones)</h2>
   <p>These are chosen specifically because the instruction quality massively outclasses the view counts.</p>
 
   <a class="vid" href="https://www.youtube.com/c/worldclassboxingchannel" target="_blank" rel="noopener">
@@ -374,33 +621,73 @@
     <span class="t">"What You Need To Do When Hitting The Heavybag" &middot; Tom Yankello</span>
     <div class="d">Watch this before your first session. Right vs wrong bag habits, from a coach who has fixed thousands of them.</div>
   </a>
+  <a class="vid" href="https://www.youtube.com/watch?v=MLIHgwx-SKY" target="_blank" rel="noopener">
+    <span class="t">Barry Robinson &middot; A Million Styles Boxing</span>
+    <div class="d">One of the most respected footwork and ring-IQ coaches alive, and criminally under-viewed. Start with the check hook breakdown embedded above, then dig into his channel.</div>
+  </a>
   <a class="vid" href="https://www.youtube.com/results?search_query=alexei+frolov+school+of+boxing" target="_blank" rel="noopener">
     <span class="t">School of Boxing &middot; Alexei Frolov</span>
     <div class="d">Russian-school technician. Fly-on-the-wall training sessions with elite-level detail on balance and movement mechanics. His grounded, flat-footed movement style matches this program's low-impact rules perfectly.</div>
   </a>
   <a class="vid" href="https://www.myboxingcoach.com/5-top-boxing-training-channels/" target="_blank" rel="noopener">
     <span class="t">MyBoxingCoach &middot; Fran Sands</span>
-    <div class="d">UK coach with a full structured curriculum from stance to advanced combinations. Especially strong on how techniques chain together, which is your weeks 5 to 12 material.</div>
+    <div class="d">UK coach with a full structured curriculum from stance to advanced combinations. Especially strong on how techniques chain together, which is your Phase 2 and 3 material.</div>
   </a>
   <a class="vid" href="https://www.youtube.com/results?search_query=lee+wylie+boxing+analysis" target="_blank" rel="noopener">
     <span class="t">Lee Wylie &middot; Fight Analysis</span>
     <div class="d">Not instruction, education. Breakdowns of Whitaker, Jones Jr., and Tyson that teach you to see defense and angles. Watch one per week on rest days.</div>
   </a>
 
-  <p class="footnote">This program is training guidance, not medical advice. If you train around an injury or a joint condition, confirm with your doctor that flat-footed boxing footwork and rotational punching are safe for you, and let their answer override anything written here.</p>
+  <p class="footnote">This program is training guidance, not medical or legal advice. If you train around an injury or a joint condition, confirm with your doctor that flat-footed boxing footwork and rotational punching are safe for you, and let their answer override anything written here. Self-defense laws vary by location; know yours.</p>
 </div>
 
 <script>
 (function () {
   var WORK = 180, REST = 60, ROUNDS = 6;
-  var focuses = [
-    "Shadowbox and movement. No bag yet.",
-    "Jab only. Snap and retract.",
-    "The 1-2. Power from the rear hip.",
-    "Defense. Work off the swinging bag.",
-    "Combinations, then take an angle.",
-    "Output round. Volume with form."
-  ];
+
+  /* ---------- session scripts ---------- */
+  var SESSIONS = {
+    foundation: {
+      focuses: [
+        "Shadowbox and movement. No bag yet.",
+        "Jab only. Snap and retract.",
+        "The 1-2. Power from the rear hip.",
+        "Defense. Work off the swinging bag.",
+        "Combinations, then take an angle.",
+        "Output round. Volume with form."
+      ],
+      calls: [
+        ["step in, jab", "double jab", "slip left", "slip right", "step back, jab"],
+        ["jab", "double jab", "jab to the body", "jab, step out"],
+        ["1, 2", "1, 1, 2", "1, 2, 1", "slow 1, 2, feel the hip"],
+        ["slip left, then 2", "step back, jab on return", "catch, then 2", "slip right, then 2"],
+        ["1, 2, 3", "1, 2, 3, 2", "1, 2, angle left", "3 to the body"],
+        ["10 straight punches", "1, 2 hard", "move, move, jab", "all out 10 seconds"]
+      ],
+      interval: 25
+    },
+    advanced: {
+      focuses: [
+        "Footwork and pivots. No bag.",
+        "Jab variations and feints.",
+        "Uppercuts in combination.",
+        "Slip, roll, counter chains.",
+        "Combos with exits. Check hook.",
+        "Reaction round. Coach on, react instantly."
+      ],
+      calls: [
+        ["pivot left", "pivot right", "jab, pivot left", "jab, pivot right", "step-drag in and out"],
+        ["feint, then jab", "jab to the body", "up jab", "feint, then 2", "double jab, feint"],
+        ["1, 2, 5", "2, 5, 2", "1, 6, 3", "6, 3, 2", "slow 5, then slow 6"],
+        ["slip, slip, 2", "roll, then 3", "catch, 2, 3", "slip right, roll, 2, 3"],
+        ["1, 2, 3, pivot out", "check hook", "1, 2, 5, 2, angle left", "2, 3, 2, angle right"],
+        ["slip!", "roll!", "1, 2!", "check hook!", "3, 2!", "freestyle 15 seconds", "pivot out!"]
+      ],
+      interval: 15
+    }
+  };
+  var session = "foundation";
+
   var phase = "work", status = "idle", round = 1, remaining = WORK, tickId = null;
   var clock = document.getElementById("clock");
   var stateEl = document.getElementById("state");
@@ -408,7 +695,9 @@
   var focusline = document.getElementById("focusline");
   var startbtn = document.getElementById("startbtn");
   var resetbtn = document.getElementById("resetbtn");
-  var audioCtx = null;
+  var sessionsel = document.getElementById("sessionsel");
+  var coachchk = document.getElementById("coachchk");
+  var audioCtx = null, wakeLock = null;
 
   function beep(freq, ms, count) {
     try {
@@ -424,6 +713,24 @@
       }
     } catch (e) {}
   }
+  function say(text) {
+    if (!coachchk.checked || !window.speechSynthesis) return;
+    try {
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.rate = 1.05; u.volume = 1;
+      speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function keepAwake() {
+    if (navigator.wakeLock && navigator.wakeLock.request) {
+      navigator.wakeLock.request("screen").then(function (l) { wakeLock = l; }).catch(function () {});
+    }
+  }
+  document.addEventListener("visibilitychange", function () {
+    if (status === "running" && document.visibilityState === "visible") keepAwake();
+  });
+
   function fmt(s) {
     var m = Math.floor(s / 60), r = s % 60;
     return m + ":" + (r < 10 ? "0" : "") + r;
@@ -442,42 +749,154 @@
       stateEl.textContent = "Ready"; stateEl.className = "timer-state idle";
     }
     roundlabel.textContent = status === "done"
-      ? "Session complete. Cooldown time."
-      : "Round " + round + " of " + ROUNDS + " · 3:00 work / 1:00 rest";
-    var f = focuses[Math.min(round, ROUNDS) - 1];
+      ? "Session complete and logged. Cooldown time."
+      : "Round " + round + " of " + ROUNDS + " · 3:00 work / 1:00 rest · " + (session === "advanced" ? "Advanced" : "Foundation");
+    var f = SESSIONS[session].focuses[Math.min(round, ROUNDS) - 1];
     focusline.innerHTML = status === "done"
-      ? "<strong>Nice work.</strong> Slow shadowbox, then stretch."
+      ? "<strong>Nice work.</strong> Slow shadowbox, then stretch. Session saved to your progress."
       : "<strong>Round " + round + ":</strong> " + f;
     startbtn.textContent = running ? "Pause" : (status === "done" ? "Again" : (status === "paused" ? "Resume" : "Start"));
+  }
+  function coachTick() {
+    if (phase !== "work" || status !== "running") return;
+    var iv = SESSIONS[session].interval;
+    var elapsed = WORK - remaining;
+    if (elapsed > 3 && remaining > 8 && elapsed % iv === 0) {
+      var pool = SESSIONS[session].calls[round - 1];
+      say(pool[Math.floor(Math.random() * pool.length)]);
+    }
   }
   function tick() {
     remaining--;
     if (remaining === 10 && phase === "work") beep(660, 120, 1);
+    coachTick();
     if (remaining <= 0) {
       if (phase === "work") {
-        if (round >= ROUNDS) { status = "done"; stop(); beep(520, 500, 3); render(); return; }
-        phase = "rest"; remaining = REST; beep(520, 400, 1);
+        if (round >= ROUNDS) {
+          status = "done"; stop(); beep(520, 500, 3);
+          logActivity("session"); renderStats(); render(); return;
+        }
+        phase = "rest"; remaining = REST; beep(520, 400, 1); say("Rest. One minute.");
       } else {
         round++; phase = "work"; remaining = WORK; beep(880, 400, 2);
+        say("Round " + round + ". " + SESSIONS[session].focuses[round - 1]);
       }
     }
     render();
   }
-  function stop() { if (tickId !== null) { clearInterval(tickId); tickId = null; } }
+  function stop() {
+    if (tickId !== null) { clearInterval(tickId); tickId = null; }
+    if (window.speechSynthesis) try { speechSynthesis.cancel(); } catch (e) {}
+    if (wakeLock) { try { wakeLock.release(); } catch (e) {} wakeLock = null; }
+  }
   startbtn.addEventListener("click", function () {
     if (tickId !== null) { stop(); status = "paused"; render(); return; }
     if (status === "done" || status === "idle") {
       round = 1; phase = "work"; remaining = WORK; beep(880, 400, 2);
+      say("Round 1. " + SESSIONS[session].focuses[0]);
     }
     status = "running";
+    keepAwake();
     tickId = setInterval(tick, 1000);
     render();
   });
   resetbtn.addEventListener("click", function () {
     stop(); status = "idle"; phase = "work"; round = 1; remaining = WORK; render();
   });
-  render();
+  sessionsel.addEventListener("change", function () {
+    session = sessionsel.value;
+    if (status !== "running") { status = "idle"; phase = "work"; round = 1; remaining = WORK; }
+    render();
+  });
+
+  /* ---------- daily task ---------- */
+  var DAILY = [
+    "Rest day. Watch one fight-analysis video (Lee Wylie) and write down 3 things you saw.",
+    "100 jabs in front of a mirror: 50 singles, 25 stepping in, 25 doubles. Every one snaps back to your chin.",
+    "3 minutes footwork-only shadowbox (step-drag all directions), then 50 crisp 1-2s.",
+    "100 jabs on the bag: 25 stepping in, 25 on the retreat, 50 doubles. Pop, not push.",
+    "60 slips and 30 rolls, slow and small, then 50 punches of your choice with exits.",
+    "5 rounds of 20-second speed bursts (straight punches) with 40 seconds of movement between.",
+    "3 rounds of freestyle shadowbox: imagine an opponent who punches back. Defense after every combo."
+  ];
+  var dailybtn = document.getElementById("dailybtn");
+  var DAYNAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  function todayKey() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function renderDaily() {
+    var dow = new Date().getDay();
+    document.getElementById("dailyday").textContent = DAYNAMES[dow] + "'s task";
+    document.getElementById("dailytask").textContent = DAILY[dow];
+    var done = getLog().some(function (e) { return e.d === todayKey() && e.t === "daily"; });
+    dailybtn.disabled = done;
+    dailybtn.textContent = done ? "Done for today" : "Mark today done";
+  }
+  dailybtn.addEventListener("click", function () {
+    logActivity("daily"); renderDaily(); renderStats();
+  });
+
+  /* ---------- progress store ---------- */
+  var KEY = "bc_log_v1";
+  function getLog() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+  }
+  function logActivity(type) {
+    var log = getLog();
+    log.push({ d: todayKey(), t: type });
+    try { localStorage.setItem(KEY, JSON.stringify(log)); } catch (e) {}
+  }
+  function dateStr(d) {
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function renderStats() {
+    var log = getLog();
+    var days = {};
+    log.forEach(function (e) { days[e.d] = Math.max(days[e.d] || 0, e.t === "session" ? 2 : 1); });
+
+    var streak = 0, cur = new Date();
+    if (!days[dateStr(cur)]) cur.setDate(cur.getDate() - 1);
+    while (days[dateStr(cur)]) { streak++; cur.setDate(cur.getDate() - 1); }
+    document.getElementById("stat-streak").textContent = streak;
+
+    var now = new Date(), monday = new Date(now);
+    monday.setDate(now.getDate() - ((now.getDay() + 6) % 7)); monday.setHours(0, 0, 0, 0);
+    var weekCount = log.filter(function (e) {
+      return e.t === "session" && new Date(e.d + "T12:00:00") >= monday;
+    }).length;
+    document.getElementById("stat-week").textContent = weekCount + "/3";
+
+    var total = log.filter(function (e) { return e.t === "session"; }).length;
+    document.getElementById("stat-total").textContent = total;
+
+    var pnum = total < 10 ? 1 : total < 20 ? 2 : 3;
+    var pname = pnum === 1 ? "Foundation" : pnum === 2 ? "Connection" : "Fluidity";
+    document.getElementById("stat-phase").textContent = pnum;
+    document.getElementById("stat-phasename").textContent = "Phase: " + pname;
+
+    var hm = document.getElementById("heatmap");
+    hm.innerHTML = "";
+    var start = new Date(); start.setDate(start.getDate() - 55);
+    for (var i = 0; i < 56; i++) {
+      var d = new Date(start); d.setDate(start.getDate() + i);
+      var cell = document.createElement("div");
+      var lvl = days[dateStr(d)];
+      if (lvl === 1) cell.className = "d1";
+      if (lvl === 2) cell.className = "d2";
+      cell.title = dateStr(d);
+      hm.appendChild(cell);
+    }
+  }
+  document.getElementById("wipebtn").addEventListener("click", function () {
+    if (confirm("Delete all progress data stored in this browser?")) {
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      renderDaily(); renderStats();
+    }
+  });
+
+  render(); renderDaily(); renderStats();
 })();
 </script>
-
+</body>
 </html>
